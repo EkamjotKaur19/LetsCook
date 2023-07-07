@@ -11,6 +11,7 @@ const APP_KEY = '863b7ffa2de0ae6449ab6c79585f6254';
 export default function Input() {
     const [searchTerm, setSearchTerm]=useState('');
     const [search, setSearch] = useState(false)
+    const [type, setType] = useState(false)
     const [ loading, setLoading ] =useState(false)
     const [list, setList] = useState([]);
     const [timeoutId, setTimeoutId] = useState();
@@ -19,7 +20,7 @@ export default function Input() {
     const [selectedMeal, setSelectedMeal] = useState('');
     const meal = ['Breakfast', 'Lunch/Dinner', 'Brunch', 'Snack', 'Teatime']
     const [selectedDish, setSelectedDish] = useState('');
-    const dish = ['alcohol cocktail', 'biscuits and cookies', 'bread', 'cereals', 'condiments and sauces', 'desserts', 'drinks', 'egg', 'ice cream and custard', 'main course', 'pancake', 'pizza', 'pasta', 'pastry', 'pies and tarts', 'pizza', 'salad', 'sandwiches', 'seafood', 'side dish', 'soup', 'starters', 'sweets'
+    const dish = ['alcohol cocktail', 'biscuits and cookies', 'bread', 'cereals', 'condiments and sauces', 'desserts', 'drinks', 'egg', 'ice cream and custard', 'main course', 'pancake','pasta', 'pastry', 'pies and tarts', 'pizza', 'salad', 'sandwiches', 'seafood', 'side dish', 'soup', 'starters', 'sweets'
   ]
   const [page, setPage]=useState(1);
 const resultsPerPage = 10;
@@ -71,25 +72,25 @@ const resultsPerPage = 10;
   
   
     const handleSearchTerm = (event) => {
-      clearTimeout(timeoutId);
+      setType(true);
       setSearchTerm(event.target.value);
       {event.target.value === '' ? setSearch(false) : setSearch(true)};
       {event.target.value === '' ? setPage(1) : setSearch(true)};
       {event.target.value === '' ? setList([]) : setSearch(true)};
-      const timeout = setTimeout(() => fetchData(event.target.value), 500);
-      setTimeoutId(timeout);
     }
 
     const handleSubmit = (event) => {
+      setType(false)
+      fetchData(searchTerm)
       event.preventDefault();
     }
 
   return (
     <>
         <div id="inp" className="search-box">
-          <div class="input-group" onSubmit={handleSubmit}>
+          <div class="input-group">
             <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" value={searchTerm} onChange={handleSearchTerm} />
-            <button type="button" class="btn btn-search btn-outline-primary">search</button>
+            <button  onClick={handleSubmit} type="button" class="btn btn-search btn-outline-primary">search</button>
           </div>
           <div className="filter">
             <p className='fil-text' >Refine your Search</p>
@@ -134,8 +135,9 @@ const resultsPerPage = 10;
         return <RecipeItem key={recipe.url} recipe={recipe.recipe} />;
     })
   ) : (
-    <Failure search={search} loading={loading} />
-  )}
+    type? null : <Failure search={search} loading={loading} />
+    
+  )} 
 
 
 </div>

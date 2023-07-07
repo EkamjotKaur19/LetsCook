@@ -1,4 +1,5 @@
 import { ReactComponent as Brand } from '../assets/logoipsum-226.svg'
+import img from '../assets/log.svg'
 import { useState } from 'react'
 import {Link} from 'react-scroll';
 import { logout, db, auth} from '../firebase';

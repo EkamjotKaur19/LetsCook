@@ -3,6 +3,7 @@ import Dialog from './Dialog';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import { getFirestore, collection, doc, setDoc,  arrayUnion, updateDoc, arrayRemove } from "firebase/firestore";
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -48,9 +49,13 @@ export default function RecipeItem(props) {
           email: user.email,
           wishlist: arrayUnion(recipe)
         });
-        alert("Recipe added to  Saved!");
+        toast.success('Recipe Saved', {
+          position: toast.POSITION.TOP_RIGHT
+      });
       } else {
-        alert('You have to LogIn to save Favourite recipes')
+        toast.warn('You have to Login to save recipes', {
+          position: toast.POSITION.TOP_RIGHT
+      });
         navigate('/login')
         console.log("User not logged in.");
       }
@@ -68,11 +73,15 @@ export default function RecipeItem(props) {
           email: user.email,
           wishlist: arrayRemove(recipe)
         });
-        alert("Recipe removed from Saved!");
+        toast.warn('Recipe removed from saved', {
+          position: toast.POSITION.TOP_RIGHT
+      });
         window.location.reload();
 
       } else {
-        alert('You have to LogIn to save Favourite recipes')
+        toast.warn('You have to Login to save recipes', {
+          position: toast.POSITION.TOP_RIGHT
+      });
         navigate('/login')
         console.log("User not logged in.");
       }

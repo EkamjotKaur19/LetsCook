@@ -16,6 +16,8 @@ import {
   where,
   addDoc,
 } from "firebase/firestore";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const firebaseConfig = {
     apiKey: "AIzaSyC0KjoI0OId-YeOf8owFE_Ps7AQuDBVY4g",
@@ -45,20 +47,26 @@ const signInWithGoogle = async () => {
         wishlist: []
       });
     }
-    
-    alert('User Logged in')
+    toast.success('User Logged In', {
+      position: toast.POSITION.TOP_RIGHT
+  });
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    toast.error(err.message, {
+      position: toast.POSITION.TOP_RIGHT
+  });
   }
 };
 const logInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
-    alert('User Logged in')
+    toast.success('User Logged In', {
+      position: toast.POSITION.TOP_RIGHT
+  });
   } catch (err) {
-    console.error(err);
-    alert('Unregistered user or Invalid Credentials');
+    toast.error('Unregistered User or invalid Credentials', {
+      position: toast.POSITION.TOP_RIGHT
+  });
   }
 };
 const registerWithEmailAndPassword = async (name, email, password) => {
@@ -72,10 +80,13 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       email,
       wishlist:[]
     });
-    alert('User Registered Successfully')
+    toast.success('User Registered Successfully', {
+      position: toast.POSITION.TOP_RIGHT
+  });
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    toast.error(err.message, {
+      position: toast.POSITION.TOP_RIGHT
+  });
   }
 };
 const sendPasswordReset = async (email) => {
@@ -83,13 +94,16 @@ const sendPasswordReset = async (email) => {
     await sendPasswordResetEmail(auth, email);
     alert("Password reset link sent!");
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    toast.error(err.message, {
+      position: toast.POSITION.TOP_RIGHT
+  });
   }
 };
 const logout = () => {
   signOut(auth);
-  alert('User Logged Out!')
+  toast.success('User Logged Out', {
+    position: toast.POSITION.TOP_RIGHT
+});
 };
 export {
   auth,

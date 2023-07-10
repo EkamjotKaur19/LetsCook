@@ -876,3 +876,12 @@ color:#ffffff
 .reset div {
   margin-top: 7px;
 }
+
+/*Toast*/
+.toast-message {
+  background: rgb(220, 85, 28);
+  color: #fff;
+  font-size: 20px;
+  width: 34vw;
+  padding: 30px 20px;
+}

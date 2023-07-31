@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from '../firebase';
 import { useAuthState } from "react-firebase-hooks/auth"
+import { motion } from "framer-motion";
+import { contactAnimation } from "../animation"
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -16,6 +18,10 @@ function Login() {
     if (user) navigate("/");
   }, [user, loading]);
   return (
+    <motion.div className="home"
+      variants={contactAnimation}
+      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      >
     <div className="login">
       <div className="login__container">
         <input
@@ -46,6 +52,7 @@ function Login() {
         </div>
       </div>
     </div>
+    </motion.div>
   );
 }
 export default Login;

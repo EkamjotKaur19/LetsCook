@@ -4,13 +4,19 @@ import RecipeItem from './RecipeItem';
 import Failure from './Failure';
 import Spinner from './Spinner/Spinner';
 import Pages from './Pages';
+import { motion } from "framer-motion";
+import { portfolioAnimations } from "../animation"
+import { useScroll } from "./useScroll"
 
 const APP_ID = '0a7886f6';
 const APP_KEY = '863b7ffa2de0ae6449ab6c79585f6254';
 
 export default function Input() {
+  const [element, controls] = useScroll();
     const [searchTerm, setSearchTerm]=useState('');
     const [search, setSearch] = useState(false)
+    const [searchHistory, setSearchHistory] = useState([])
+    const [showSearch, setShowSearch] = useState(false)
     const [type, setType] = useState(false)
     const [ loading, setLoading ] =useState(false)
     const [list, setList] = useState([]);
@@ -74,6 +80,7 @@ const resultsPerPage = 10;
     const handleSearchTerm = (event) => {
       setType(true);
       setSearchTerm(event.target.value);
+
       {event.target.value === '' ? setSearch(false) : setSearch(true)};
       {event.target.value === '' ? setPage(1) : setSearch(true)};
       {event.target.value === '' ? setList([]) : setSearch(true)};
@@ -82,16 +89,30 @@ const resultsPerPage = 10;
     const handleSubmit = (event) => {
       setType(false)
       fetchData(searchTerm)
+      setSearchHistory((prevSearchHistory) => [...prevSearchHistory, searchTerm]);
       event.preventDefault();
     }
 
   return (
     <>
-        <div id="inp" className="search-box">
+    <div className="inp-sect" ref={element}>
+    <motion.div className="home"
+      variants={portfolioAnimations}
+      animate={controls}
+      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      
+      >
+
+    
+    
+        <div id="inp" className="search-box"  >
+        
           <div class="input-group">
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" value={searchTerm} onChange={handleSearchTerm} />
+            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" value={searchTerm} onMouseEnter={() => {setShowSearch(true)}} onChange={handleSearchTerm} />
+            
             <button  onClick={handleSubmit} type="button" class="btn btn-search btn-outline-primary">search</button>
           </div>
+          
           <div className="filter">
             <p className='fil-text' >Refine your Search</p>
         
@@ -142,7 +163,10 @@ const resultsPerPage = 10;
 
 </div>
 {Array.isArray(list) && list.length > 0 &&
+
 <Pages page={page} handleNext={handleNext} handlePrev={handlePrev} />}
+</motion.div>
+</div>
     </>
   )
 }

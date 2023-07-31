@@ -6,6 +6,8 @@ import {
   registerWithEmailAndPassword,
   signInWithGoogle,
 } from "../firebase";
+import { motion } from "framer-motion";
+import { contactAnimation } from "../animation"
 
 function Register() {
     const [email, setEmail] = useState("");
@@ -22,6 +24,10 @@ function Register() {
       if (user) navigate('/')
     }, [user, loading]);
     return (
+      <motion.div className="home"
+      variants={contactAnimation}
+      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      >
       <div className="register">
         <div className="register__container">
           <input
@@ -59,6 +65,7 @@ function Register() {
           </div>
         </div>
       </div>
+      </motion.div>
     );
   }
   export default Register;

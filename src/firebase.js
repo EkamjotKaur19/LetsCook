@@ -18,6 +18,8 @@ import {
 } from "firebase/firestore";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Toast from "./components/Toast";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyC0KjoI0OId-YeOf8owFE_Ps7AQuDBVY4g",

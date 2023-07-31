@@ -6,9 +6,14 @@ import { getFirestore, collection, doc, setDoc,  arrayUnion, updateDoc, arrayRem
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { motion } from "framer-motion";
+import { portfolioAnimations } from "../animation"
+import { useScroll } from "./useScroll"
+
 
 
 export default function RecipeItem(props) {
+  const [element, controls] = useScroll();
   const location = useLocation();
   const [user] = useAuthState(auth);
   const [showShare, setShowShare] = useState(false);
@@ -89,6 +94,14 @@ export default function RecipeItem(props) {
 
   return (
     <>
+    <div className="rec" ref={element} >
+
+    
+    <motion.div className="home"
+      variants={portfolioAnimations}
+      animate={controls}
+      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      >
         <div className="recipe" onMouseEnter={handleShowShare} onMouseLeave={handleShowShare} >
             <img src={recipe.image } alt=""  />  
             <span className="dishName">{recipe.label.slice(0,35)}</span>
@@ -116,7 +129,8 @@ export default function RecipeItem(props) {
         </>
         }
 
-
+    </motion.div>
+    </div>
     </>
   )
 }

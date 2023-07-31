@@ -7,6 +7,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate, NavLink } from "react-router-dom";
 import Saved from './Saved';
+import { motion } from "framer-motion";
+import { navAnimation } from "../animation"
 
 const Nav = () => {
     const [showNavbar, setShowNavbar] = useState(false)
@@ -51,6 +53,10 @@ const Nav = () => {
   
     return (
       <>
+      <motion.div className="home"
+      variants={navAnimation}
+      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      >
       <nav className="navbar">
         <div className="container">
           <div className="logo">
@@ -86,6 +92,7 @@ const Nav = () => {
           </div>
         </div>
       </nav>
+      </motion.div>
       </>
     )
   }

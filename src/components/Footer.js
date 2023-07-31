@@ -1,11 +1,22 @@
 import React from 'react'
+import { motion } from "framer-motion";
+import { footerTextAnimation } from "../animation"
+import { useScroll } from "./useScroll"
 
 export default function Footer() {
+  const [element, controls] = useScroll();
   return (
     <>
     <footer id='footer'>
+    <div className="foot text-center p-3" ref={element} >
+    <motion.div className="home"
+      variants={footerTextAnimation}
+      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      animate={controls}
+      >
+    
       
-      <div className="foot text-center p-3"  >
+      
         <h5 className="follow-head">Follow Us On</h5>
         <ul className="follow">
             <li id="sound">
@@ -26,9 +37,10 @@ export default function Footer() {
           
           <a className="text" href="/" > Let'sCook.com</a>
         </div>
-        
+        </motion.div>
       </div>
     </footer>
+    
     </>
   )
 }

@@ -1,9 +1,18 @@
 import React from 'react'
 import img from '../assets/a2.jpg'
+import { motion } from "framer-motion";
+import { blogsAnimation } from "../animation"
+import { useScroll } from "./useScroll"
 
 export default function About() {
-  return (
-    <div id="about" className='main-abt' >
+  const [element, controls] = useScroll();
+  return <div id="about" className='main-abt' ref={element} >
+    <motion.div className="home"
+      variants={blogsAnimation}
+      animate={controls}
+      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      >
+    
         <div className="parents-abt">
         
             <div className="child title-abt">
@@ -24,6 +33,8 @@ At our website, you'll find an extensive collection of mouth-watering recipes th
             </div>
             
         </div>
+    
+    </motion.div>
     </div>
-  )
+  
 }

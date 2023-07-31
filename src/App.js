@@ -11,11 +11,13 @@ import Saved from './components/Saved';
 import Register from './components/Register';
 import Reset from './components/Reset';
 import { ToastContainer } from 'react-toastify';
-
+import { motion } from 'framer-motion';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 function App() {
 
   return (
+    <motion.div initial="hidden" animate="show">
     <div className="App contents">
       <ToastContainer />
       <Router>
@@ -31,10 +33,12 @@ function App() {
           <Route path='/savedpage' exact element={<Saved />} />
           <Route path='/reset' exact element={<Reset />} />
         </Routes>
+        <ScrollToTop />
         </div>
       </Router>
       
     </div>
+    </motion.div>
   );
 }
 

@@ -5,9 +5,9 @@
 
 /*Navbar*/
 
+
 body{
   overflow-x: hidden;
-  font-family: "Work Sans";
 }
 
 .container {
@@ -21,7 +21,7 @@ body{
 
 .navbar {
   height: 70px;
-  background-color:  #ffa666;
+  background-color:var(--primary-color);
   position: relative;
 }
 
@@ -60,13 +60,13 @@ nav ul li {
 }
 
 nav ul li:hover{
-	background-color: #b97c3f;
+	background-color: var(--secondary-color);
   color:#ffffff;
 	transition: all ease 0.2s;
 }
 
 .navv:hover{
-	background-color: #b97c3f;
+	background-color: var(--secondary-color);
   color:#ffffff;
 	transition: all ease 0.2s;
 }
@@ -148,13 +148,14 @@ nav ul li:hover{
 }
 
 .search-box .btn-search{
-  background: rgb(43, 131, 226);
+  background:var(--ternary-color);
+  border: #000;
   color:white;
 }
 
 .filter{
   background-color: #ffffff;
-  color:rgb(255, 111, 28);
+  color:var(--ternary-color);
   padding:2%;
   display: flex;
   flex-direction: column;
@@ -170,12 +171,28 @@ font-family: 'Ysabeau SC', sans-serif;
 
 .filter-btn{
   margin: 1.5%;
+  color:black;
+  background-color:var(--primary-color);
 }
 
 
+.filter-btn:hover{
+  margin: 1.5%;
+  color:black;
+  background-color:var(--ternary-color);
+}
+
 .filter-opt{
-  background-color: #f47d68;
+  background-color:#eb3300;
   margin:3%;
+}
+
+.apply{
+  background-color: var(--ternary-color);
+}
+
+.apply:hover{
+  background-color: var(--secondary-color);
 }
 
 .hide-btn{
@@ -735,15 +752,15 @@ color:#ffffff
 
 
 .inside-contact input[type=submit]{
-  background-color:#3054f7;
+  background-color: var(--ternary-color);
   color:#fff;
   transition:0.2s;
-  border:2px solid #000;
+  border:0.2px solid orange;
   margin:30px 0;
 }
 
 .inside-contact input[type=submit]:hover{
-  background-color:#beaeff;
+  background-color:var(--primary-color);
   color:#ffffff;
   transition:0.2s;
 }
@@ -798,10 +815,22 @@ color:#ffffff
   margin-bottom: 10px;
   border: none;
   color: white;
-  background-color: black;
+  background-color:var(--ternary-color);
 }
 .login__google {
-  background-color: #4285f4;
+  background-color: var(--ternary-color);
+}
+
+.login__btn:hover {
+  padding: 10px;
+  font-size: 18px;
+  margin-bottom: 10px;
+  border: none;
+  color: white;
+  background-color:var(--primary-color);
+}
+.login__google:hover {
+  background-color: var(--primary-color);
 }
 .login div {
   margin-top: 7px;
@@ -837,10 +866,22 @@ color:#ffffff
   margin-bottom: 10px;
   border: none;
   color: white;
-  background-color: black;
+  background-color:var(--ternary-color);
 }
 .register__google {
-  background-color: #4285f4;
+  background-color:var(--ternary-color);
+}
+
+.register__btn:hover {
+  padding: 10px;
+  font-size: 18px;
+  margin-bottom: 10px;
+  border: none;
+  color: white;
+  background-color:var(--primary-color);
+}
+.register__google:hover {
+  background-color:var(--primary-color);
 }
 .register div {
   margin-top: 7px;

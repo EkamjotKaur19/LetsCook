@@ -143,7 +143,7 @@ const resultsPerPage = 10;
         ))}
       </select>
 
-      <button className='btn btn-danger' onClick={handleApply} >Apply</button>
+      <button className='btn btn-danger apply' onClick={handleApply} >Apply</button>
       </div>
       </div>
 
